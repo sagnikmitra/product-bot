@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 # It requests some information from a library
 import requests
 import time
-from PIL import Image 
+from PIL import Image
 import urllib.request
-
+import streamlit as st
 # print("Put some skills that you are not familiar with...")
 # unfamiliar_skill = input('>')
 # print(f'Filtering out {unfamiliar_skill}')
@@ -13,25 +13,25 @@ import urllib.request
 # It returns status code
 # print(html_text)
 # def find_jobs():
-html_text = requests.get('https://www.amazon.in/').text
-    # It returns html code
-    # print(html_text)
+html_text = requests.get(
+    'https://www.amazon.in/s?k=phones').text
+# It returns html code
+# print(html_text)
 soup = BeautifulSoup(html_text, 'lxml')
-jobs = soup.find('img', class_="landscape-image")
-print(jobs)
+jobs = soup.find('img', class_="s-image")
+# price = soup.find('span', class_="a-price-whole")
+# print(jobs)
 # print(jobs['src'])
 # Image.open(jobs['src']).show()
-urllib.request.urlretrieve( jobs['src'],
-   "pic.png")
-  
-img = Image.open("pic.png")
-img.show()
+# urllib.request.urlretrieve(jobs['src'],
+#                            "pic.png")
+# st.write(price)
+st.image(jobs['src'])
+# img = Image.open("pic.png")
+# img.show()
 
-
-
-
-    # jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
-    # print(job)
+# jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
+# print(job)
 #     for index,job in enumerate(jobs):
 #         published_date= job.find('span', class_='sim-posted').text
 #         if 'few' in published_date:
