@@ -6,6 +6,7 @@ import time
 from PIL import Image
 import urllib.request
 import streamlit as st
+print("MODI OP")
 # print("Put some skills that you are not familiar with...")
 # unfamiliar_skill = input('>')
 # print(f'Filtering out {unfamiliar_skill}')
