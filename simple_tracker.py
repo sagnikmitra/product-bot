@@ -80,7 +80,8 @@ class AmazonAPI:
 
     def get_products_links(self):
         self.driver.get(self.base_url)
-        element = self.driver.find_element_by_xpath('//*[@id="twotabsearchtextbox"]')
+        element = self.driver.find_element_by_xpath(
+            '//*[@id="twotabsearchtextbox"]')
         element.send_keys(self.search_term)
         element.send_keys(Keys.ENTER)
         time.sleep(2)  # wait to load page
@@ -153,14 +154,17 @@ class AmazonAPI:
             price = self.convert_price(price)
         except NoSuchElementException:
             try:
-                availability = self.driver.find_element_by_id('availability').text
+                availability = self.driver.find_element_by_id(
+                    'availability').text
                 if 'Available' in availability:
-                    price = self.driver.find_element_by_class_name('olp-padding-right').text
+                    price = self.driver.find_element_by_class_name(
+                        'olp-padding-right').text
                     price = price[price.find(self.currency):]
                     price = self.convert_price(price)
             except Exception as e:
                 print(e)
-                print(f"Can't get price of a product - {self.driver.current_url}")
+                print(
+                    f"Can't get price of a product - {self.driver.current_url}")
                 return None
         except Exception as e:
             print(e)
